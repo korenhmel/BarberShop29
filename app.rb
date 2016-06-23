@@ -13,6 +13,17 @@ class Barber < ActiveRecord::Base
 
 end
 get '/' do
-  @barbers = Barber.all
+  @barbers = Barber.order "created_at DESC"
 	erb :index
+end
+
+get '/vizit' do
+
+  erb :vizit
+end
+
+post '/vizit' do
+  @clients  = params['username']
+  Client.create name: @clients
+  erb :vizit
 end
