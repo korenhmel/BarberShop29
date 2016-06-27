@@ -19,16 +19,21 @@ end
 
 get '/vizit' do
 
+
   erb :vizit
 end
 
 post '/vizit' do
-  @clients  = params['username']
-  @phone    = params['phone']
-  @datestamp= params['datetime']
-  @barber   = params['barber']
-  @color    = params['color']
-
-  Client.create ({name: @clients, phone: @phone, datestamp: @datestamp, color: @color, barber: @barber})
-  erb :vizit
+  # lamer way
+  # @clients  = params['username']
+  # @phone    = params['phone']
+  # @datestamp= params['datetime']
+  # @barber   = params['barber']
+  # @color    = params['color']
+  #
+  # Client.create ({name: @clients, phone: @phone, datestamp: @datestamp, color: @color, barber: @barber})
+  # best way
+  c = Client.new params[:client]
+  c.save
+  erb "<h2> спасибо вы записались</h2>"
 end
