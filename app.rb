@@ -1,8 +1,8 @@
 #encoding: utf-8
 require 'rubygems'
 require 'sinatra'
- require 'sinatra/reloader'
- require 'sinatra/activerecord'
+require 'sinatra/reloader'
+require 'sinatra/activerecord'
 
 set :database, "sqlite3:barbershop29.db"
 
@@ -19,7 +19,7 @@ class Barber < ActiveRecord::Base
 end
 get '/' do
   @barbers = Barber.order "created_at DESC"
-	erb :index
+  erb :index
 end
 
 get '/vizit' do
@@ -38,8 +38,11 @@ post '/vizit' do
   #
   # Client.create ({name: @clients, phone: @phone, datestamp: @datestamp, color: @color, barber: @barber})
 
-  # advansed way
+  # advanced way
   c = Client.new params[:client]
-  c.save
-  erb "<h2> спасибо вы записались</h2>"
+  if c.save
+    erb "<h2> спасибо вы записались</h2>"
+  else
+    erb "<h2>ошибка</h2>"
+  end
 end
