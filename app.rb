@@ -7,6 +7,11 @@ require 'sinatra'
 set :database, "sqlite3:barbershop29.db"
 
 class Client < ActiveRecord::Base
+  validates :name, presence: true
+  validates :phone, presence: true
+  validates :datestamp, presence: true
+  validates :color, presence: true
+
 
 end
 class Barber < ActiveRecord::Base
@@ -32,7 +37,8 @@ post '/vizit' do
   # @color    = params['color']
   #
   # Client.create ({name: @clients, phone: @phone, datestamp: @datestamp, color: @color, barber: @barber})
-  # best way
+
+  # advansed way
   c = Client.new params[:client]
   c.save
   erb "<h2> спасибо вы записались</h2>"
