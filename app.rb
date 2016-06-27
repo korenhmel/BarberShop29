@@ -26,6 +26,9 @@ post '/vizit' do
   @clients  = params['username']
   @phone    = params['phone']
   @datestamp= params['datetime']
-  Client.create ({name: @clients, phone: @phone, datestamp: @datestamp})
+  @barber   = params['barber']
+  @color    = params['color']
+
+  Client.create ({name: @clients, phone: @phone, datestamp: @datestamp, color: @color, barber: @barber})
   erb :vizit
 end
