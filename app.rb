@@ -7,8 +7,8 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:barbershop29.db"
 
 class Client < ActiveRecord::Base
-  validates :name, presence: true
-  validates :phone, presence: true
+  validates :name, presence: true, length: {in: 3..20}
+  validates :phone, presence: true, length: { minimum: 3 }
   validates :datestamp, presence: true
   validates :color, presence: true
 
