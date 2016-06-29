@@ -47,3 +47,7 @@ post '/vizit' do
     erb :vizit
   end
 end
+
+get '/barber/:id' do
+  erb :barber
+end
