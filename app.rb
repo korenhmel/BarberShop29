@@ -24,7 +24,7 @@ end
 
 get '/vizit' do
 
-
+  @c = Client.new
   erb :vizit
 end
 
@@ -39,11 +39,11 @@ post '/vizit' do
   # Client.create ({name: @clients, phone: @phone, datestamp: @datestamp, color: @color, barber: @barber})
 
   # advanced way
-  c = Client.new params[:client]
-  if c.save
+  @c = Client.new params[:client]
+  if @c.save
     erb "<h2> спасибо вы записались</h2>"
   else
-    @error = c.errors.full_messages.first
+    @error = @c.errors.full_messages.first
     erb :vizit
   end
 end
